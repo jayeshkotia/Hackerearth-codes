@@ -1,0 +1,31 @@
+//Given an integer array nums where every element appears three times except for one, which appears exactly once. Find the single element and return it.
+
+//You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+class Solution {
+    public int singleNumber(int[] nums) {
+        Map<Integer,Integer> map=new HashMap<>();
+        for(int i=0;i<nums.length;i++)
+        {
+            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+            System.out.println(nums[i] + "  "+map.getOrDefault(nums[i],0));
+        }
+        for(int val:map.keySet())
+        {
+            if(map.get(val)==1)
+            {
+                return val;
+            }
+        }
+        return -1;
+    }
+}
