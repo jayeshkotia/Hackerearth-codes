@@ -1,0 +1,110 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+class Result {
+
+    /*
+     * Complete the 'timeConversion' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts STRING s as parameter.
+     */
+
+    public static String timeConversion(String s) {
+    
+    char arr[]=s.toCharArray();
+    int num1=0,num2=0;
+     
+     if(arr[8]=='P')
+     {
+     num1=Integer.parseInt(String.valueOf(arr[0]));
+     num2=Integer.parseInt(String.valueOf(arr[1]));
+        if(arr[0]=='0' && arr[1]<'8')
+        {
+        num1=num1+1;
+        num2=num2+2;
+        }
+        else if(arr[0]=='1' && arr[1]!='2')
+        {
+            num1=num1+1;
+            num2=num2+2;
+        }
+        else if(arr[0]=='1' && arr[1]=='2')
+        {
+            num1=1;
+            num2=2;
+        }
+        else if(arr[1]=='8')
+        {
+            num2=0;
+            num1=num1+2;    
+        }
+        else if(arr[1]=='9')
+        {
+            num2=1;
+            num1=num1+2;
+        }
+     
+        arr[0]=(char)(num1+48);
+        arr[1]=(char)(num2+48);
+        
+     }
+     else if(arr[8]=='A')
+     {
+         if(arr[0]=='1' && arr[1]=='2')
+         {
+             num1=0;
+             num2=0;
+         }
+         else
+         {
+             char a[]=new char[8];
+             for(int i=0;i<8;i++)
+             {
+               a[i]=arr[i];
+             }
+             String new_string = new String(a);
+             return new_string;
+         }
+         arr[0]=(char)(num1+48);
+         arr[1]=(char)(num2+48);
+        
+     }
+     
+     char a[]=new char[8];
+     for(int i=0;i<8;i++)
+     {
+        a[i]=arr[i];
+     }
+    String new_string = new String(a);
+    
+    return new_string;
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String s = bufferedReader.readLine();
+
+        String result = Result.timeConversion(s);
+
+        bufferedWriter.write(result);
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
