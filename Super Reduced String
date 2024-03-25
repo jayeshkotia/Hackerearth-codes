@@ -1,0 +1,32 @@
+class Result {
+
+    public static String superReducedString(String s) {
+    
+    int len=s.length();
+    int i=0;
+    StringBuilder stsb=new StringBuilder(s);
+   while(i<len)
+    {
+        if(s.charAt(i)==s.charAt(i+1))
+        {
+            stsb.deleteCharAt(i);
+            stsb.deleteCharAt(i);
+            s=stsb.toString();
+            len=s.length()-1;
+            i=0;
+        }
+        else {
+            i++;
+        }
+    }
+    if(s.equals(""))
+    {
+        return "Empty String";
+    }
+    else
+    {
+        return stsb.toString();
+    }
+    }
+
+}
